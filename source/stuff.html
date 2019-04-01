@@ -1,0 +1,93 @@
+<h1>effectsize.science</h1>
+<h2>An interactive tool for visualizing effect sizes</h2>
+<p class="instructions">This tool allows you to see the effect size (d) and percent overlap for any comparison between two samples. Enter the mean and standard deviation below for each group. If you have the standard error instead of the standard deviation, check the box to enter it and the sample size (n).</p>
+<div class="row">
+	<div class="controls">
+		<table>
+			<tr>
+				<td><label for="a-mean">Sample 1 Mean</label></td>
+				<td>
+					<input id="a-mean" name="a-mean" class="a mean update" value="175">
+				</td>
+			</tr>
+			<tr class="sd-row">
+				<td><label for="a-sd">Sample 1 SD</label></td>
+				<td>
+					<input id="a-sd" name="a-sd" class="a sd update" value="7.1">
+				</td>
+			</tr>
+			<tr class="se-row">
+				<td><label for="a-se">Sample 1 SEM</label></td>
+				<td>
+					<input id="a-se" name="a-se" class="a se update" value="">
+				</td>
+			</tr>
+			<tr class="se-row">
+				<td><label for="a-n">Sample 1 <em>n</em></label></td>
+				<td>
+					<input id="a-n" name="a-n" class="a n update" value="">
+				</td>
+			</tr>
+			<tr>
+				<td><label for="b-mean">Sample 2 Mean</label></td>
+				<td>
+					<input id="b-mean" name="b-mean" class="b mean update" value="162">
+				</td>
+			</tr>
+			<tr class="sd-row">
+				<td><label for="b-sd">Sample 2 SD</label></td>
+				<td>
+					<input id="b-sd" name="b-sd" class="b sd update" value="6.5">
+				</td>
+			</tr>
+			<tr class="se-row">
+				<td><label for="b-se">Sample 2 SEM</label></td>
+				<td>
+					<input id="b-se" name="b-se" class="b se update" value="">
+				</td>
+			</tr>
+			<tr class="se-row">
+				<td><label for="b-n">Sample 2 <em>n</em></label></td>
+				<td>
+					<input id="b-n" name="b-n" class="b n update" value="">
+				</td>
+			</tr>
+		</table>
+		<div class="switch">
+			<label>
+				Use Standard Error
+				<input id="se" type="checkbox">
+			</label>
+		</div>
+	</div>
+	<div class="graph" id="main"></div>
+	<div id="d">
+		<div id="stats"></div>
+		<a id="csv">Export CSV</a>
+	</div>
+</div>
+<div class="row">
+	<div class="label">Sample 1</div>
+	<div class="label">Sample 2</div>
+</div>
+<div class="row">
+	<div class="column">
+		<p>Sample 1</p>
+		<div class="graph" id="a"></div>
+		<div class="percent" id="a-percent"></div>
+	</div>
+	<div class="column">
+		<p>Sample 2</p>
+		<div class="graph" id="b"></div>
+		<div class="percent" id="b-percent"></div>
+	</div>
+</div>
+<p class="fine-print">
+This tool assumes both distributions are normal. Effect size is based on Cohen’s d. Overlap is based on Weitzman’s ∆.
+</p>
+<p class="fine-print">
+This site is brought to you by the developers of <a href="https://sexdifference.org">SexDifference.org</a>. If you use this tool to prepare a publication, please cite: Maney DL. 2016 Perils and pitfalls of reporting sex differences. Phil. Trans. R. Soc. B 371: 20150119. <a href="https://dx.doi.org/10.1098/rstb.2015.0119">https://dx.doi.org/10.1098/rstb.2015.0119</a>
+</p>
+<div class="row">
+	<footer>Created, owned, and maintained by Evan Goode. Source code at <a href="https://github.com/evan-goode/effectsize">GitHub</a>.</footer>
+</div>
