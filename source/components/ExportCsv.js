@@ -1,5 +1,6 @@
 import React from "react";
 import * as constants from "../constants";
+import { Link } from "./common";
 import { generateData } from "../utilities";
 
 const formatLine = (sample, { x, y }) => [sample, x, y].join(",");
@@ -19,8 +20,10 @@ export default props => {
 		.join("\n");
 	const href = `data:application/octet-stream,${encodeURIComponent(csv)}`;
 	return (
-		<a href={href} download={constants.CSV_FILENAME}>
-			Export CSV
-		</a>
+		<p>
+			<Link href={href} download={constants.CSV_FILENAME}>
+				Export CSV
+			</Link>
+		</p>
 	);
 };

@@ -2,12 +2,31 @@ import React from "react";
 import * as d3 from "d3";
 import _ from "lodash";
 
-import { d3FillWithPattern, d3Wrap, d3Animate, generateData } from "../utilities";
+import {
+	d3FillWithPattern,
+	d3Wrap,
+	d3Animate,
+	generateData
+} from "../utilities";
 import * as constants from "../constants";
 
-const WIDTH = 640;
-const HEIGHT = 480;
-const MARGIN = { top: 0, right: 0, bottom: 128, left: 0 };
+const WIDTH = 320;
+const HEIGHT = 160;
+const MARGIN = {
+	top: 0,
+	right: 0,
+	bottom: 18,
+	left: 0
+};
+
+const style = `
+	width: 100%;
+	padding: 1em;
+	box-sizing: border-box;
+	svg {
+		overflow: visible;
+	}
+`;
 
 class LargeChart {
 	constructor(element, { samples, patternIds }) {
@@ -29,7 +48,8 @@ class LargeChart {
 			);
 		this.axisX = this.root
 			.append("g")
-			.attr("transform", `translate(0 ${HEIGHT})`);
+			.attr("transform", `translate(0 ${HEIGHT})`)
+			.attr("class", "axis");
 		const defs = this.root.append("defs");
 		const clipIds = {
 			a: _.uniqueId(),
@@ -56,7 +76,7 @@ class LargeChart {
 		);
 		this.update({ samples }, false);
 	}
-	update = ({ samples}, animate = true) => {
+	update = ({ samples }, animate = true) => {
 		const data = {
 			a: generateData(samples.a.mean, samples.a.sd),
 			b: generateData(samples.b.mean, samples.b.sd)
@@ -66,13 +86,14 @@ class LargeChart {
 		const maxY = Math.max(d3.max(data.a, d => d.y), d3.max(data.b, d => d.y));
 		this.x.domain([minX, maxX]).range([0, WIDTH]);
 		this.y.domain([0, maxY]).range([HEIGHT, 0]);
-		d3Animate(this.pathA, animate)
-			.attr("d", this.line(data.a));
-		d3Animate(this.pathB, animate)
-			.attr("d", this.line(data.b));
-		d3Animate(this.axisX, animate)
-			.call(d3.axisBottom(this.x).ticks(3));
+		d3Animate(this.pathA, animate).attr("d", this.line(data.a));
+		d3Animate(this.pathB, animate).attr("d", this.line(data.b));
+		d3Animate(this.axisX, animate).call(
+			d3.axisBottom(this.x).ticks(3)
+			//.tickSize(TICK_SIZE)
+			//	.tickPadding(TICK_PADDING)
+		);
 	};
 }
 
-export default d3Wrap(LargeChart);
+export default d3Wrap(LargeChart, style);

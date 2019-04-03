@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import _ from "lodash";
 
-import { Row, Column } from "../components/common";
+import { Row, Column, Flexed, Spacer } from "../components/common";
 import Controls from "../components/Controls";
 import Patterns from "../components/Patterns";
 import LargeChart from "../components/LargeChart";
@@ -10,6 +10,7 @@ import EffectSize from "../components/EffectSize";
 import ExportCsv from "../components/ExportCsv";
 import SmallChart from "../components/SmallChart";
 import Comparator from "../components/Comparator";
+import * as constants from "../constants";
 
 const INITIAL_CONTROLS = {
 	["a-mean"]: 175,
@@ -103,17 +104,21 @@ export default class Visualization extends React.PureComponent {
 					<Controls
 						controls={this.state.controls}
 						setControls={this.setControls}
+						colors={constants.COLORS}
 					/>
-					<LargeChart
-						samples={processedControls}
-						patternIds={this.patternIds}
-					/>
-					<Column>
+					<Flexed>
+						<LargeChart
+							samples={processedControls}
+							patternIds={this.patternIds}
+						/>
+					</Flexed>
+					<div>
 						<EffectSize samples={processedControls} />
 						<ExportCsv samples={processedControls} />
-					</Column>
+					</div>
 				</Row>
-				<Row>
+				<Spacer />
+				<Row spacing="4rem">
 					<Column>
 						<p>Sample 1</p>
 						<SmallChart

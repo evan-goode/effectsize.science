@@ -1,6 +1,7 @@
 import React from "react";
 import _ from "lodash";
 import gaussian from "gaussian";
+import styled from "styled-components";
 
 import * as constants from "./constants";
 
@@ -17,7 +18,11 @@ export const d3FillWithPattern = (root, clipIds, patternId, width, height) => {
 		.attr("fill", `url(#${patternId})`);
 };
 
-export const d3Wrap = wrapped => {
+export const d3Wrap = (wrapped, style = "") => {
+	console.log({ style });
+	const Styled = styled.div`
+		${style}
+	`;
 	return class extends React.Component {
 		constructor(props) {
 			super(props);
@@ -33,12 +38,13 @@ export const d3Wrap = wrapped => {
 			this.chart && this.chart.update(next);
 		}
 		render() {
-			return <svg ref={this.element} />;
+			return <Styled ref={this.element} />;
 		}
 	};
 };
 export const d3Animate = (element, animate) => {
-	if (animate) return element.transition().duration(constants.ANIMATION_DURATION);
+	if (animate)
+		return element.transition().duration(constants.ANIMATION_DURATION);
 	return element;
 };
 

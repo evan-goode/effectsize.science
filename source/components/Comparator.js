@@ -1,5 +1,10 @@
 import React from "react";
 import gaussian from "gaussian";
+import styled from "styled-components";
+
+const P = styled.p`
+	text-align: center;
+`;
 
 export default props => {
 	const isGreater = props.sample.mean > props.other.mean;
@@ -8,9 +13,9 @@ export default props => {
 	const cdf = normal.cdf(props.other.mean);
 	const percentage = `${Math.round(100 * (isGreater ? cdf : 1 - cdf))}%`;
 	return (
-		<p>
+		<P>
 			{percentage} of the values from {props.labels.sample} are {comparisonWord}{" "}
 			the average for {props.labels.other}
-		</p>
+		</P>
 	);
 };

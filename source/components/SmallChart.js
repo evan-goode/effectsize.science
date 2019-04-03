@@ -2,12 +2,31 @@ import React from "react";
 import * as d3 from "d3";
 import _ from "lodash";
 
-import { d3FillWithPattern, d3Wrap, d3Animate, generateData } from "../utilities";
+import {
+	d3FillWithPattern,
+	d3Wrap,
+	d3Animate,
+	generateData
+} from "../utilities";
 import * as constants from "../constants";
 
-const WIDTH = 480;
-const HEIGHT = 260;
-const MARGIN = { top: 0, right: 0, bottom: 64, left: 0 };
+const WIDTH = 240;
+const HEIGHT = 100;
+const MARGIN = {
+	top: 0,
+	right: 0,
+	bottom: 18,
+	left: 0
+};
+
+const style = `
+	width: 100%;
+	padding: 1em;
+	box-sizing: border-box;
+	svg {
+		overflow: visible;
+	}
+`;
 
 class SmallChart {
 	constructor(element, { sample, other, patternIds }) {
@@ -29,7 +48,8 @@ class SmallChart {
 			);
 		this.axisX = this.root
 			.append("g")
-			.attr("transform", `translate(0 ${HEIGHT})`);
+			.attr("transform", `translate(0 ${HEIGHT})`)
+			.attr("class", "axis");
 		const defs = this.root.append("defs");
 		const clipIds = {
 			sample: _.uniqueId(),
@@ -68,7 +88,7 @@ class SmallChart {
 			x: otherMean,
 			y: 0,
 			width: WIDTH,
-			height: HEIGHT,
+			height: HEIGHT
 		};
 	};
 	update = ({ sample, other }, animate = true) => {
@@ -78,10 +98,12 @@ class SmallChart {
 		const maxY = d3.max(data, d => d.y);
 		this.x.domain([minX, maxX]).range([0, WIDTH]);
 		this.y.domain([0, maxY]).range([HEIGHT, 0]);
-		d3Animate(this.path, animate)
-			.attr("d", this.line(data));
-		d3Animate(this.axisX, animate)
-			.call(d3.axisBottom(this.x).ticks(3));
+		d3Animate(this.path, animate).attr("d", this.line(data));
+		d3Animate(this.axisX, animate).call(
+			d3.axisBottom(this.x).ticks(3)
+			//.tickSize(TICK_SIZE)
+			//.tickPadding(TICK_PADDING)
+		);
 		const shadedPosition = this.positionShaded(sample, other);
 		d3Animate(this.shaded, animate)
 			.attr("x", shadedPosition.x)
@@ -91,4 +113,4 @@ class SmallChart {
 	};
 }
 
-export default d3Wrap(SmallChart);
+export default d3Wrap(SmallChart, style);
