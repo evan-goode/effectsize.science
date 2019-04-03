@@ -1,22 +1,16 @@
-# Mango Tango
+# effectsize.science
 
-Mango Tango is a minimal front-end boilerplate that gets you set up with [Parcel](https://parceljs.org) as fast as possible.
+[effectsize.science](https://effectsize.science) is an interactive tool for visualizing effect sizes. It provides the same functionality as [SexDifference.org](https://sexdifference.org), but uses language appropriate for any comparison between two groups, not just males and females.
 
 ## Getting started
 
 Clone the repository.
 
 ```
-git clone git@github.com:evan-goode/mango-tango.git # SSH
-git clone https://github.com/evan-goode/mango-tango.git # HTTPS
+git clone git@github.com:evan-goode/effectsize.science.git # SSH
+git clone https://github.com/evan-goode/effectsize.science.git # HTTPS
 
-cd mango-tango
-```
-
-Unless you're working on the boilerplate itself, you'll want to remove the existing .git directory.
-
-```
-rm -rf .git
+cd effectsize.science
 ```
 
 Install dependencies and start the development server.
@@ -26,16 +20,8 @@ yarn
 yarn start
 ```
 
-The default entry point is `source/index.html`. Remember to set the page title in `source/index.html`, fill out `source/manifest.json`, and replace `source/images/icon.png` with your own.
-
 ## Building for production
 
 ```
 yarn build
 ```
-
-## See also
-
-- [Parcel](https://parceljs.org)
-- [Yarn](https://yarnpkg.com)
-- [Babel](https://babeljs.io)
