@@ -59,7 +59,7 @@ export default props => {
 				<Link href="https://github.com/evan-goode/effectsize.science">
 					GitHub
 				</Link>{" "}
-				under GPLv3. If you use this tool to prepare a publication, please cite:
+				under AGPLv3. If you use this tool to prepare a publication, please cite:
 				Maney DL. 2016 Perils and pitfalls of reporting sex differences. Phil.
 				Trans. R. Soc. B 371: 20150119.{" "}
 				<Link href="https://dx.doi.org/10.1098/rstb.2015.0119">
