@@ -10,6 +10,7 @@ const color = lighten(1 / 5, "black");
 const Container = styled.div`
 	font-family: Lato, sans-serif;
 	margin: 3em auto;
+	padding: 0 1em;
 	width: 960px;
 	color: ${color};
 	line-height: 1.4;
