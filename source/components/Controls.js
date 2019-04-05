@@ -35,7 +35,7 @@ const MeanControl = props => {
 					name={meanName}
 					value={props.controls[meanName]}
 					onChange={props.handleChange}
-					background={props.color}
+					color={props.color}
 				/>
 			</Td>
 		</Tr>
@@ -60,7 +60,7 @@ const SpreadControls = props => {
 							name={seName}
 							value={props.controls[seName]}
 							onChange={props.handleChange}
-							background={props.color}
+							color={props.color}
 						/>
 					</Td>
 				</Tr>
@@ -76,7 +76,7 @@ const SpreadControls = props => {
 							name={nName}
 							value={props.controls[nName]}
 							onChange={props.handleChange}
-							background={props.color}
+							color={props.color}
 						/>
 					</Td>
 				</Tr>
@@ -96,7 +96,7 @@ const SpreadControls = props => {
 					name={sdName}
 					value={props.controls[sdName]}
 					onChange={props.handleChange}
-					background={props.color}
+					color={props.color}
 				/>
 			</Td>
 		</Tr>

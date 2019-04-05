@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import * as constants from "../constants";
-import { darken } from "polished";
+import { transparentize } from "polished";
 
 export const Row = styled.div`
 	display: flex;
@@ -26,19 +26,17 @@ export const Spacer = styled.div`
 export const Input = styled.input`
 	font-size: inherit;
 	font-family: inherit;
+	font-weight: bold;
 	border: none;
 	outline: none;
 	border-radius: 0.5em;
-	width: 2.5em;
-	padding: 0.25em;
+	width: 3em;
+	padding: 0.2em;
 	text-align: center;
 	transition: background ${constants.ANIMATION_DURATION}ms;
-	background: ${props => props.background};
-	&:hover {
-		background: ${props => darken(0.08, props.background)};
-	}
+	border: 0.15em solid ${props => props.color};
 	&:focus {
-		background: ${props => darken(0.15, props.background)};
+		background: ${props => transparentize(0.75, props.color)};
 	}
 `;
 export const Check = styled.input.attrs({ type: "checkbox" })`
