@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import _ from "lodash";
+import { notify } from "react-notify-toast";
 
 import { Row, Column, Flexed, Spacer } from "../components/common";
 import Controls from "../components/Controls";
@@ -57,6 +58,15 @@ const processControls = controls => {
 		}
 	};
 };
+const validateControls = processed => {
+	const validate = (mean, sd) => {
+		return Math.abs(Math.log10(mean) - Math.log10(sd)) < 10;
+	};
+	return (
+		validate(processed.a.mean, processed.a.sd) &&
+		validate(processed.b.mean, processed.b.sd)
+	);
+};
 
 export default class Visualization extends React.PureComponent {
 	constructor(props) {
@@ -89,6 +99,19 @@ export default class Visualization extends React.PureComponent {
 	};
 	render() {
 		const processedControls = processControls(this.state.controls);
+		if (!validateControls(processedControls)) {
+			try {
+				notify.show(
+					"This tool may report inaccurate results when the mean and standard deviation differ by many orders of magnitude.",
+					"warning",
+					-1
+				);
+			} catch {}
+		} else {
+			try {
+				notify.hide();
+			} catch {}
+		}
 		const smallPatternIdsA = {
 			sample: this.patternIds.a,
 			intersect: this.patternIds.intersect
