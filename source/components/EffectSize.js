@@ -16,6 +16,7 @@ export default props => {
 	const cohen = Math.abs(
 		(a.mean - b.mean) / Math.sqrt((a.sd * a.sd + b.sd * b.sd) / 2)
 	);
+	const cohenRounded = Number(cohen.toFixed(constants.DECIMAL_PRECISION));
 	const minimum = Math.min(
 		constants.Z_MIN * a.sd + a.mean,
 		constants.Z_MIN * b.sd + b.mean
@@ -24,7 +25,6 @@ export default props => {
 		constants.Z_MAX * a.sd + a.mean,
 		constants.Z_MAX * b.sd + b.mean
 	);
-	console.log({ minimum, maximum });
 	const distributions = {
 		a: gaussian(a.mean, a.sd * a.sd),
 		b: gaussian(b.mean, b.sd * b.sd)
@@ -38,8 +38,8 @@ export default props => {
 	return (
 		<>
 			<p>
-				<em>d</em> = {cohen.toFixed(constants.DECIMAL_PRECISION)} (
-				{describeCohen(cohen)})
+				<em>d</em> = {cohenRounded} (
+				{describeCohen(cohenRounded)})
 			</p>
 			<p>overlap = {percentage}</p>
 		</>
