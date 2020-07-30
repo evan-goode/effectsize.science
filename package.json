@@ -4,7 +4,7 @@
     "@babel/preset-react": "^7.6.3",
     "d3": "^5.12.0",
     "gaussian": "^1.1.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "parcel": "^1.12.4",
     "polished": "^3.4.1",
     "react": ">=16.10.2",
