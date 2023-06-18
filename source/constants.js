@@ -11,3 +11,5 @@ export const COLORS = {
 	a: "#55a3ed",
 	b: "#28ef53"
 };
+
+export const HATCH = true;
